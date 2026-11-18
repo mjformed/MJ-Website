@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CtaBand } from "@/components/cta-band";
 import { PageIntro } from "@/components/page-intro";
 import { PhotoLayer } from "@/components/photo-layer";
+import { asset } from "@/lib/asset";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -33,17 +34,18 @@ export default function WorkPage() {
                 <span className="size-2 rounded-full bg-moss" />
                 <span className="ml-2 text-xs text-muted">yourname.com</span>
               </div>
-              <div className="grid gap-6 p-6 sm:grid-cols-[1.4fr_0.8fr] sm:p-8">
-                <div>
+              <div className="grid sm:grid-cols-[1.15fr_0.85fr]">
+                <div className="p-6 sm:p-8">
                   <p className="text-xs tracking-[0.16em] uppercase text-clay">A clear offer</p>
                   <p className="mt-3 font-serif text-4xl leading-[0.95] tracking-[-0.03em]">
                     Say what you do. Then make it easy to begin.
                   </p>
                 </div>
-                <div className="grid content-end gap-2">
-                  <div className="h-16 bg-moss" />
-                  <div className="h-8 bg-sand" />
-                </div>
+                <img
+                  src={asset("/backgrounds/hero.jpg")}
+                  alt=""
+                  className="h-56 w-full object-cover sm:h-full"
+                />
               </div>
             </div>
             <p className="mt-5 leading-relaxed text-muted">
@@ -55,8 +57,12 @@ export default function WorkPage() {
           <article id="work-brand" className="scroll-mt-[4.5rem] grid gap-8 lg:grid-cols-2">
             <div>
               <p className="text-xs tracking-[0.16em] uppercase text-muted">Specimen 02 · Brand</p>
-              <p className="mt-6 font-serif text-7xl leading-none tracking-[-0.04em]">Aa</p>
-              <p className="mt-4 text-lg">Instrument Serif for the voice. Instrument Sans for the details.</p>
+              <img
+                src={asset("/brand/logo.jpg")}
+                alt="MJ Forms mark"
+                className="mt-6 h-48 w-48 rounded-sm object-cover"
+              />
+              <p className="mt-4 text-lg">A sky-blue mark, cream type, and one line: Thoughtfully different.</p>
               <p className="mt-4 max-w-md leading-relaxed text-muted">
                 A small system: one display face, one working face, and colors that still look
                 related when they are used apart.

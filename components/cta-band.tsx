@@ -3,7 +3,7 @@ import { PhotoLayer } from "@/components/photo-layer";
 
 export function CtaBand() {
   return (
-    <PhotoLayer src="/backgrounds/quote.jpg" overlay="bg-moss/78" className="text-paper">
+    <PhotoLayer src="/backgrounds/quote.jpg" overlay="bg-moss/62" className="text-paper">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 px-5 py-16 md:flex-row md:items-end md:px-8 md:py-20">
         <div className="max-w-xl">
           <p className="text-sm tracking-[0.2em] uppercase text-paper/70">Start a project</p>
