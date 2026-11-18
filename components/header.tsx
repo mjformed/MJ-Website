@@ -1,10 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
-import { nav, type NavItem } from "@/lib/content";
+import { usePathname } from "next/navigation";
+import { AppLink } from "@/components/app-link";
 import { Mark } from "@/components/mark";
+import { nav, type NavItem } from "@/lib/content";
+
+function currentPath(pathname: string) {
+  if (pathname === "/") return "/";
+  return pathname.replace(/\/$/, "");
+}
 
 export function Header() {
+  const pathname = usePathname();
+  const path = currentPath(pathname);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
   const closeTimer = useRef<number | null>(null);
@@ -29,6 +38,18 @@ export function Header() {
     cancelClose();
     closeTimer.current = window.setTimeout(() => setOpenId(null), 140);
   }
+
+  function goToPage() {
+    window.setTimeout(() => {
+      closeMenu();
+      setMobileOpen(false);
+    }, 0);
+  }
+
+  useEffect(() => {
+    setOpenId(null);
+    setMobileOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
@@ -68,30 +89,37 @@ export function Header() {
         Skip to content
       </a>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4 md:px-8">
-        <a href="#top" className="flex items-center gap-3 text-sm tracking-[0.22em] uppercase">
+        <AppLink
+          href="/"
+          className="flex items-center gap-3 text-sm tracking-[0.22em] uppercase"
+          onClick={goToPage}
+        >
           <Mark />
           <span>Forma</span>
-        </a>
+        </AppLink>
         <nav className="hidden items-center gap-1 text-sm md:flex" aria-label="Primary">
           {nav.map((item) => (
             <NavTrigger
               key={item.href}
               item={item}
+              current={path === item.href}
               open={openId === item.href}
               onOpen={() => openMenu(item.href)}
               onClose={closeMenu}
+              onNavigate={goToPage}
               onEnterPanel={() => {
                 const first = panelRef.current?.querySelector<HTMLAnchorElement>("a");
                 first?.focus();
               }}
             />
           ))}
-          <a
-            href="#contact-form"
+          <AppLink
+            href="/contact"
             className="ml-3 bg-ink px-4 py-2 text-paper transition-colors hover:bg-clay"
+            onClick={goToPage}
           >
             Start a project
-          </a>
+          </AppLink>
         </nav>
         <button
           type="button"
@@ -115,27 +143,27 @@ export function Header() {
           onKeyDown={(event) => onPanelKey(event, closeMenu)}
         >
           <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-6 md:flex-row md:px-8">
-            <a
+            <AppLink
               href={active.href}
               className="w-44 shrink-0 py-1 hover:text-clay"
-              onClick={closeMenu}
+              onClick={goToPage}
             >
               <span className="block text-sm tracking-[0.14em] uppercase text-muted">
                 {active.label}
               </span>
-              <span className="mt-2 block font-serif text-2xl">View section</span>
-            </a>
+              <span className="mt-2 block font-serif text-2xl">Open page</span>
+            </AppLink>
             <div className="grid flex-1 grid-cols-2 gap-2 lg:grid-cols-4">
               {active.items.map((link) => (
-                <a
+                <AppLink
                   key={link.href}
                   href={link.href}
                   className="border border-transparent p-3 hover:border-line hover:bg-paper"
-                  onClick={closeMenu}
+                  onClick={goToPage}
                 >
                   <span className="block font-serif text-2xl">{link.label}</span>
                   <span className="mt-1 block text-sm leading-relaxed text-muted">{link.detail}</span>
-                </a>
+                </AppLink>
               ))}
             </div>
           </div>
@@ -149,36 +177,32 @@ export function Header() {
               const expanded = openId === item.href;
               return (
                 <li key={item.href} className="border-b border-line last:border-b-0">
-                  <button
-                    type="button"
-                    className="flex w-full items-center justify-between py-3 text-left text-lg"
-                    aria-expanded={expanded}
-                    onClick={() => setOpenId(expanded ? null : item.href)}
-                  >
-                    {item.label}
-                    <Chevron open={expanded} />
-                  </button>
+                  <div className="flex items-center gap-2">
+                    <AppLink
+                      href={item.href}
+                      className={`flex-1 py-3 text-left text-lg ${path === item.href ? "text-clay" : ""}`}
+                      onClick={goToPage}
+                    >
+                      {item.label}
+                    </AppLink>
+                    <button
+                      type="button"
+                      className="px-2 py-3"
+                      aria-expanded={expanded}
+                      aria-label={`${expanded ? "Hide" : "Show"} ${item.label} links`}
+                      onClick={() => setOpenId(expanded ? null : item.href)}
+                    >
+                      <Chevron open={expanded} />
+                    </button>
+                  </div>
                   {expanded ? (
                     <ul className="mb-3 grid gap-1 border-l border-line pl-4">
-                      <li>
-                        <a
-                          href={item.href}
-                          className="block py-2 text-muted"
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          Overview
-                        </a>
-                      </li>
                       {item.items.map((link) => (
                         <li key={link.href}>
-                          <a
-                            href={link.href}
-                            className="block py-2"
-                            onClick={() => setMobileOpen(false)}
-                          >
+                          <AppLink href={link.href} className="block py-2" onClick={goToPage}>
                             <span className="block">{link.label}</span>
                             <span className="block text-sm text-muted">{link.detail}</span>
-                          </a>
+                          </AppLink>
                         </li>
                       ))}
                     </ul>
@@ -195,19 +219,23 @@ export function Header() {
 
 function NavTrigger({
   item,
+  current,
   open,
   onOpen,
   onClose,
+  onNavigate,
   onEnterPanel,
 }: {
   item: NavItem;
+  current: boolean;
   open: boolean;
   onOpen: () => void;
   onClose: () => void;
+  onNavigate: () => void;
   onEnterPanel: () => void;
 }) {
-  function onButtonKey(event: ReactKeyboardEvent<HTMLButtonElement>) {
-    if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+  function onLinkKey(event: ReactKeyboardEvent<HTMLAnchorElement>) {
+    if (event.key === "ArrowDown") {
       event.preventDefault();
       onOpen();
       window.requestAnimationFrame(onEnterPanel);
@@ -219,19 +247,16 @@ function NavTrigger({
   }
 
   return (
-    <button
-      type="button"
-      className={`flex items-center gap-1.5 px-3 py-2 ${open ? "text-clay" : "hover:text-clay"}`}
-      aria-expanded={open}
-      aria-haspopup="true"
-      aria-controls="desktop-nav-panel"
+    <AppLink
+      href={item.href}
+      className={`flex items-center gap-1.5 px-3 py-2 ${open || current ? "text-clay" : "hover:text-clay"}`}
+      onClick={onNavigate}
       onMouseEnter={onOpen}
-      onClick={() => (open ? onClose() : onOpen())}
-      onKeyDown={onButtonKey}
+      onKeyDown={onLinkKey}
     >
       {item.label}
       <Chevron open={open} />
-    </button>
+    </AppLink>
   );
 }
 

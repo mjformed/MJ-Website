@@ -14,79 +14,79 @@ export type NavItem = {
 
 export const nav: NavItem[] = [
   {
-    href: "#work",
+    href: "/work",
     label: "Work",
     items: [
       {
-        href: "#work-website",
+        href: "/work#work-website",
         label: "Website",
         detail: "A homepage that leads with the offer.",
       },
       {
-        href: "#work-brand",
+        href: "/work#work-brand",
         label: "Brand",
         detail: "Type, color, and a small system.",
       },
     ],
   },
   {
-    href: "#services",
+    href: "/services",
     label: "Services",
     items: [
       {
-        href: "#service-websites",
+        href: "/services#service-websites",
         label: "Websites",
         detail: "Custom sites for new and existing brands.",
       },
       {
-        href: "#service-logos",
+        href: "/services#service-logos",
         label: "Logos",
         detail: "A mark that holds up small and large.",
       },
       {
-        href: "#service-branding",
+        href: "/services#service-branding",
         label: "Branding",
         detail: "Identity from scratch, or a refresh.",
       },
       {
-        href: "#service-digital",
+        href: "/services#service-digital",
         label: "Digital design",
         detail: "The work around the website and logo.",
       },
     ],
   },
   {
-    href: "#approach",
+    href: "/approach",
     label: "Approach",
     items: [
       {
-        href: "#principle-look-good",
+        href: "/approach#principle-look-good",
         label: "Look good",
         detail: "Type, color, and composition with care.",
       },
       {
-        href: "#principle-work-well",
+        href: "/approach#principle-work-well",
         label: "Work well",
         detail: "Clear structure on a phone or a laptop.",
       },
       {
-        href: "#principle-last",
+        href: "/approach#principle-last",
         label: "Last",
         detail: "A point of view people remember.",
       },
       {
-        href: "#approach-process",
+        href: "/approach#approach-process",
         label: "How we work",
         detail: "Listen, shape, refine, hand off.",
       },
     ],
   },
   {
-    href: "#contact",
+    href: "/contact",
     label: "Contact",
     items: [
       {
-        href: "#contact-form",
+        href: "/contact#contact-form",
         label: "Start a project",
         detail: "Tell us what you are making.",
       },
@@ -96,12 +96,12 @@ export const nav: NavItem[] = [
         detail: contactEmail,
       },
       {
-        href: "#approach-new",
+        href: "/approach#approach-new",
         label: "New businesses",
         detail: "A first website, logo, and brand.",
       },
       {
-        href: "#approach-existing",
+        href: "/approach#approach-existing",
         label: "Existing brands",
         detail: "A refresh when the look no longer fits.",
       },
