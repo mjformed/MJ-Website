@@ -31,7 +31,7 @@ export default function HomePage() {
               <br />
               Make an
               <br />
-              <em className="text-clay">Impact</em>.
+              <em className="text-clay">Impact.</em>
             </h1>
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
               Forma helps businesses and individuals build a strong online presence through
