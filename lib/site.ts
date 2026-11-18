@@ -1,4 +1,4 @@
-export const siteUrl = "https://mjformed.github.io/MJ-Website";
+export const siteUrl = "https://mjforms.com";
 
 export const pages = ["/", "/work/", "/services/", "/approach/", "/contact/"] as const;
 

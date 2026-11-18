@@ -2,4 +2,4 @@
 
 Company website.
 
-**Live site:** https://mjformed.github.io/MJ-Website/
+**Live site:** https://mjforms.com
