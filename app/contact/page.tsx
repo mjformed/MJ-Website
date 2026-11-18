@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/contact-form";
+import { PhotoLayer } from "@/components/photo-layer";
 import { contactEmail } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <section className="border-b border-line bg-cream">
+    <PhotoLayer src="/backgrounds/hero.jpg" overlay="bg-cream/82" position="object-[center_40%]">
       <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 md:px-8 lg:grid-cols-12">
         <div className="lg:col-span-5">
           <p className="text-sm tracking-[0.2em] uppercase text-muted">Contact</p>
@@ -24,10 +25,13 @@ export default function ContactPage() {
             {contactEmail}
           </a>
         </div>
-        <div id="contact-form" className="scroll-mt-[4.5rem] lg:col-span-7">
+        <div
+          id="contact-form"
+          className="scroll-mt-[4.5rem] bg-paper/90 p-6 shadow-[0_24px_60px_-32px_rgba(26,23,20,0.5)] ring-1 ring-ink/10 lg:col-span-7 lg:p-8"
+        >
           <ContactForm />
         </div>
       </div>
-    </section>
+    </PhotoLayer>
   );
 }

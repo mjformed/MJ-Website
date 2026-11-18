@@ -27,7 +27,7 @@ export function ContactForm() {
     if (!name) next.name = "Add your name.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) next.email = "Add a valid email.";
     if (!project) next.project = "Choose what you need.";
-    if (message.length < 12) next.message = "Tell us a little about the project.";
+    if (!message) next.message = "Add a note about the project.";
 
     setErrors(next);
     if (Object.keys(next).length > 0) {
@@ -96,7 +96,7 @@ export function ContactForm() {
           defaultValue=""
           aria-invalid={errors.project ? true : undefined}
           aria-describedby={errors.project ? "project-error" : undefined}
-          className="mt-2 w-full border-b border-ink/30 bg-transparent py-3 text-lg outline-none"
+          className="field"
         >
           <option value="" disabled>
             Choose a service
@@ -123,7 +123,7 @@ export function ContactForm() {
           rows={5}
           aria-invalid={errors.message ? true : undefined}
           aria-describedby={errors.message ? "message-error" : undefined}
-          className="mt-2 w-full resize-y border-b border-ink/30 bg-transparent py-3 text-lg outline-none"
+          className="field resize-y"
         />
         {errors.message ? (
           <p id="message-error" className="mt-2 text-sm text-clay">
@@ -135,7 +135,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="bg-ink px-5 py-3 text-paper hover:bg-clay disabled:opacity-60"
+          className="bg-ink px-5 py-3 text-paper transition-colors hover:bg-clay disabled:opacity-60"
         >
           {status === "sending" ? "Sending…" : "Send"}
         </button>
@@ -179,7 +179,7 @@ function Field({
         autoComplete={autoComplete}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${id}-error` : undefined}
-        className="mt-2 w-full border-b border-ink/30 bg-transparent py-3 text-lg outline-none"
+        className="field"
       />
       {error ? (
         <p id={`${id}-error`} className="mt-2 text-sm text-clay">

@@ -23,6 +23,17 @@ body {
   font-family: var(--font-sans);
 }
 
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  opacity: 0.045;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>");
+}
+
 ::selection {
   background: #e7c7b4;
 }
@@ -48,6 +59,28 @@ body {
   animation: nav-in 160ms ease;
 }
 
+.field {
+  margin-top: 0.5rem;
+  width: 100%;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ink) 30%, transparent);
+  background: transparent;
+  padding: 0.75rem 0;
+  font-size: 1.125rem;
+  outline: none;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.field:focus {
+  border-color: var(--color-clay);
+  background: color-mix(in srgb, var(--color-sand) 35%, transparent);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 42s linear infinite;
+}
+
 @keyframes nav-in {
   from {
     opacity: 0;
@@ -56,6 +89,15 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
   }
 }
 
