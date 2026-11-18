@@ -1,4 +1,4 @@
-export const contactEmail = "hello@forma.studio";
+export const contactEmail = "mjformed@gmail.com";
 
 export type NavLink = {
   href: string;
