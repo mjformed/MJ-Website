@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { asset } from "@/lib/asset";
 import { services } from "@/lib/content";
 
 const pages = [
@@ -33,13 +33,10 @@ export default function HomePage() {
   return (
     <>
       <section className="relative overflow-hidden">
-        <Image
-          src="/backgrounds/hero.jpg"
+        <img
+          src={asset("/backgrounds/hero.jpg")}
           alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-[center_35%]"
+          className="absolute inset-0 h-full w-full object-cover object-[center_35%]"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/90 to-paper/50" />
         <div className="relative mx-auto grid max-w-6xl gap-14 px-5 py-16 md:px-8 lg:grid-cols-12 lg:py-24">
@@ -82,12 +79,10 @@ export default function HomePage() {
       </section>
 
       <section className="relative overflow-hidden text-paper">
-        <Image
-          src="/backgrounds/quote.jpg"
+        <img
+          src={asset("/backgrounds/quote.jpg")}
           alt=""
-          fill
-          sizes="100vw"
-          className="object-cover object-center"
+          className="absolute inset-0 h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-moss/75" />
         <div className="relative mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
