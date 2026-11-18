@@ -23,11 +23,6 @@ export const nav: NavItem[] = [
         detail: "A homepage that leads with the offer.",
       },
       {
-        href: "#work-logo",
-        label: "Logo",
-        detail: "A mark sturdy enough to repeat.",
-      },
-      {
         href: "#work-brand",
         label: "Brand",
         detail: "Type, color, and a small system.",

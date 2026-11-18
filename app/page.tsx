@@ -93,14 +93,14 @@ export default function HomePage() {
                 </h2>
               </div>
               <p className="max-w-sm text-sm leading-relaxed text-muted">
-                These are specimens of the studio&apos;s approach. They show the kind of website,
-                mark, and brand system we build. They are not client case studies.
+                These are specimens of the studio&apos;s approach. They show the kind of website
+                and brand system we build. They are not client case studies.
               </p>
             </div>
             <div className="mt-12 grid gap-6 lg:grid-cols-12">
               <article
                 id="work-website"
-                className="scroll-mt-[4.5rem] bg-paper p-5 ring-1 ring-ink/10 lg:col-span-7"
+                className="scroll-mt-[4.5rem] bg-paper p-5 ring-1 ring-ink/10 lg:col-span-12"
               >
                 <p className="text-xs tracking-[0.16em] uppercase text-muted">Specimen 01 · Website</p>
                 <div className="mt-5 overflow-hidden bg-cream ring-1 ring-ink/10">
@@ -130,26 +130,11 @@ export default function HomePage() {
               </article>
 
               <article
-                id="work-logo"
-                className="scroll-mt-[4.5rem] flex flex-col bg-moss p-5 text-paper lg:col-span-5"
-              >
-                <p className="text-xs tracking-[0.16em] uppercase text-paper/70">Specimen 02 · Logo</p>
-                <div className="flex flex-1 flex-col items-center justify-center py-12">
-                  <Mark tone="paper" className="size-28" />
-                  <p className="mt-6 text-sm tracking-[0.42em] uppercase">Forma</p>
-                </div>
-                <p className="leading-relaxed text-paper/80">
-                  A mark simple enough to remember and sturdy enough to repeat, in type and on its
-                  own.
-                </p>
-              </article>
-
-              <article
                 id="work-brand"
                 className="scroll-mt-[4.5rem] grid gap-8 bg-paper p-5 ring-1 ring-ink/10 lg:col-span-12 lg:grid-cols-2 lg:p-8"
               >
                 <div>
-                  <p className="text-xs tracking-[0.16em] uppercase text-muted">Specimen 03 · Brand</p>
+                  <p className="text-xs tracking-[0.16em] uppercase text-muted">Specimen 02 · Brand</p>
                   <p className="mt-6 font-serif text-7xl leading-none tracking-[-0.04em]">Aa</p>
                   <p className="mt-4 text-lg">Instrument Serif for the voice. Instrument Sans for the details.</p>
                   <p className="mt-4 max-w-md leading-relaxed text-muted">
