@@ -3,6 +3,8 @@ import { Instrument_Sans, Instrument_Serif } from "next/font/google";
 import { HashScroll } from "@/components/hash-scroll";
 import { Header } from "@/components/header";
 import { SiteFooter } from "@/components/site-footer";
+import { contactEmail } from "@/lib/content";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const sans = Instrument_Sans({
@@ -17,13 +19,27 @@ const serif = Instrument_Serif({
   variable: "--font-instrument-serif",
 });
 
+const description =
+  "Forma helps businesses and individuals build a strong online presence through custom website design, logo creation, branding, and digital design.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Forma — Design studio",
     template: "%s — Forma",
   },
-  description:
-    "Forma helps businesses and individuals build a strong online presence through custom website design, logo creation, branding, and digital design.",
+  description,
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Forma — Design studio",
+    description,
+    url: "/",
+    siteName: "Forma",
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -34,6 +50,20 @@ export default function RootLayout({
   return (
     <html lang="en" data-scroll-behavior="smooth" className={`${sans.variable} ${serif.variable}`}>
       <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "Forma",
+              url: siteUrl,
+              email: contactEmail,
+              description,
+              image: `${siteUrl}/brand/logo.jpg`,
+            }),
+          }}
+        />
         <HashScroll />
         <Header />
         <main id="main">{children}</main>
