@@ -7,7 +7,7 @@ import { services } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Custom website design, logo creation, branding, and digital design from Forma.",
+    "Custom website design, logo creation, branding, and digital design from MJ Forms.",
 };
 
 export default function ServicesPage() {

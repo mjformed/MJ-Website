@@ -51,8 +51,8 @@ export function ContactForm() {
           name,
           email,
           message: `${message}\n\nProject: ${project}`,
-          subject: `Forma project — ${project}`,
-          from_name: "Forma website",
+          subject: `MJ Forms project — ${project}`,
+          from_name: "MJ Forms website",
           replyto: email,
         }),
       });

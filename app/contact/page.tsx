@@ -5,7 +5,7 @@ import { contactEmail } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Start a project with Forma. Share a little context and we will write back.",
+  description: "Start a project with MJ Forms. Share a little context and we will write back.",
 };
 
 export default function ContactPage() {

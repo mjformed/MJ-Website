@@ -21,8 +21,8 @@ export default function HomePage() {
             <em className="text-clay">Impact.</em>
           </h1>
           <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
-            Custom websites, logos, branding, and digital design. Clear, considered work for
-            new businesses and brands ready for a cleaner public face.
+            MJ Forms designs custom websites, logos, branding, and digital work. Clear,
+            considered design for new businesses and brands ready for a cleaner public face.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link

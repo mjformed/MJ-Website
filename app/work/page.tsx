@@ -5,7 +5,7 @@ import { PhotoLayer } from "@/components/photo-layer";
 
 export const metadata: Metadata = {
   title: "Work",
-  description: "Specimens of the websites and brand systems Forma builds.",
+  description: "Specimens of the websites and brand systems MJ Forms builds.",
 };
 
 export default function WorkPage() {

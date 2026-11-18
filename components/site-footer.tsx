@@ -10,7 +10,7 @@ export function SiteFooter() {
           <p className="flex items-center gap-3">
             <Mark className="h-12 w-auto" />
             <span>
-              <span className="block text-sm tracking-[0.22em] uppercase">Forma LLC</span>
+              <span className="block text-sm tracking-[0.22em] uppercase">MJ Forms LLC</span>
               <span className="mt-1 block text-xs tracking-[0.16em] uppercase text-muted">
                 Thoughtfully different.
               </span>

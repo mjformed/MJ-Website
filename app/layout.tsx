@@ -3,7 +3,7 @@ import { Instrument_Sans, Instrument_Serif } from "next/font/google";
 import { HashScroll } from "@/components/hash-scroll";
 import { Header } from "@/components/header";
 import { SiteFooter } from "@/components/site-footer";
-import { contactEmail } from "@/lib/content";
+import { brandName, contactEmail } from "@/lib/content";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -20,23 +20,23 @@ const serif = Instrument_Serif({
 });
 
 const description =
-  "Forma helps businesses and individuals build a strong online presence through custom website design, logo creation, branding, and digital design.";
+  "MJ Forms helps businesses and individuals build a strong online presence through custom website design, logo creation, branding, and digital design.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Forma — Design studio",
-    template: "%s — Forma",
+    default: "MJ Forms — Design studio",
+    template: "%s — MJ Forms",
   },
   description,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Forma — Design studio",
+    title: "MJ Forms — Design studio",
     description,
     url: "/",
-    siteName: "Forma",
+    siteName: "MJ Forms",
     locale: "en_US",
     type: "website",
   },
@@ -56,7 +56,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "ProfessionalService",
-              name: "Forma",
+              name: brandName,
               url: siteUrl,
               email: contactEmail,
               description,

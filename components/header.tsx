@@ -39,7 +39,7 @@ export function Header() {
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5 py-4 md:px-8">
         <AppLink href="/" className="flex items-center gap-3 text-sm tracking-[0.22em] uppercase">
           <Mark />
-          <span>Forma</span>
+          <span>MJ Forms</span>
         </AppLink>
         <nav className="hidden items-center gap-1 text-sm md:flex" aria-label="Primary">
           {nav.map((item) => (

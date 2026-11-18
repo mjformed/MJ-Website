@@ -6,7 +6,7 @@ import { principles, steps } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Approach",
-  description: "How Forma shapes websites, logos, and brands from first listen to hand off.",
+  description: "How MJ Forms shapes websites, logos, and brands from first listen to hand off.",
 };
 
 export default function ApproachPage() {
