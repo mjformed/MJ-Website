@@ -1,20 +1,23 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { contactEmail, projectTypes } from "@/lib/content";
+import { contactEmail, projectTypes, web3formsKey } from "@/lib/content";
 
 type Field = "name" | "email" | "project" | "message";
 type Errors = Partial<Record<Field, string>>;
+type Status = "idle" | "sending" | "sent" | "error";
 
 const fields: Field[] = ["name", "email", "project", "message"];
 
 export function ContactForm() {
   const [errors, setErrors] = useState<Errors>({});
-  const [mailto, setMailto] = useState<string | null>(null);
+  const [status, setStatus] = useState<Status>("idle");
 
-  function onSubmit(event: FormEvent<HTMLFormElement>) {
+  async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    if (data.get("botcheck")) return;
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const project = String(data.get("project") ?? "").trim();
@@ -28,21 +31,48 @@ export function ContactForm() {
 
     setErrors(next);
     if (Object.keys(next).length > 0) {
-      setMailto(null);
+      setStatus("idle");
       const first = fields.find((field) => next[field]);
       if (first) document.getElementById(first)?.focus();
       return;
     }
 
-    const href = `mailto:${contactEmail}?subject=${encodeURIComponent(
-      `Forma project — ${project}`,
-    )}&body=${encodeURIComponent(`${message}\n\n— ${name}\n${email}`)}`;
-    setMailto(href);
-    window.location.href = href;
+    setStatus("sending");
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: web3formsKey,
+          name,
+          email,
+          message: `${message}\n\nProject: ${project}`,
+          subject: `Forma project — ${project}`,
+          from_name: "Forma website",
+          replyto: email,
+        }),
+      });
+      const result = (await response.json()) as { success?: boolean };
+
+      if (!response.ok || !result.success) {
+        setStatus("error");
+        return;
+      }
+
+      form.reset();
+      setStatus("sent");
+    } catch {
+      setStatus("error");
+    }
   }
 
   return (
     <form onSubmit={onSubmit} noValidate className="grid gap-6">
+      <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
       <Field
         id="name"
         label="Name"
@@ -102,17 +132,23 @@ export function ContactForm() {
         ) : null}
       </div>
       <div className="flex flex-wrap items-center gap-4">
-        <button type="submit" className="bg-ink px-5 py-3 text-paper hover:bg-clay">
-          Prepare email
+        <button
+          type="submit"
+          disabled={status === "sending"}
+          className="bg-ink px-5 py-3 text-paper hover:bg-clay disabled:opacity-60"
+        >
+          {status === "sending" ? "Sending…" : "Send"}
         </button>
         <a href={`mailto:${contactEmail}`} className="link-underline text-sm">
           {contactEmail}
         </a>
       </div>
       <p className="text-sm text-muted" aria-live="polite">
-        {mailto
-          ? "Your email app should open with the message ready. If it does not, use the address above."
-          : "This opens your email app. Nothing is stored on the site."}
+        {status === "sent"
+          ? "Sent. We will write back to the email you entered."
+          : status === "error"
+            ? "The message did not send. Try again, or use the address above."
+            : "This sends a message to the studio. We will reply by email."}
       </p>
     </form>
   );
