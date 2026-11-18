@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const repo = "MJForms";
+const repo = "MJ-Website";
 const isGithubPages = process.env.GITHUB_PAGES === "true";
 
 const nextConfig: NextConfig = {
