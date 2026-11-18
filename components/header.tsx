@@ -18,7 +18,7 @@ export function Header() {
   const [openId, setOpenId] = useState<string | null>(null);
   const closeTimer = useRef<number | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
-  const active = nav.find((item) => item.href === openId) ?? null;
+  const active = nav.find((item) => item.href === openId && item.items.length > 0) ?? null;
 
   function cancelClose() {
     if (closeTimer.current) window.clearTimeout(closeTimer.current);
@@ -175,6 +175,7 @@ export function Header() {
           <ul>
             {nav.map((item) => {
               const expanded = openId === item.href;
+              const hasMenu = item.items.length > 0;
               return (
                 <li key={item.href} className="border-b border-line last:border-b-0">
                   <div className="flex items-center gap-2">
@@ -185,17 +186,19 @@ export function Header() {
                     >
                       {item.label}
                     </AppLink>
-                    <button
-                      type="button"
-                      className="px-2 py-3"
-                      aria-expanded={expanded}
-                      aria-label={`${expanded ? "Hide" : "Show"} ${item.label} links`}
-                      onClick={() => setOpenId(expanded ? null : item.href)}
-                    >
-                      <Chevron open={expanded} />
-                    </button>
+                    {hasMenu ? (
+                      <button
+                        type="button"
+                        className="px-2 py-3"
+                        aria-expanded={expanded}
+                        aria-label={`${expanded ? "Hide" : "Show"} ${item.label} links`}
+                        onClick={() => setOpenId(expanded ? null : item.href)}
+                      >
+                        <Chevron open={expanded} />
+                      </button>
+                    ) : null}
                   </div>
-                  {expanded ? (
+                  {hasMenu && expanded ? (
                     <ul className="mb-3 grid gap-1 border-l border-line pl-4">
                       {item.items.map((link) => (
                         <li key={link.href}>
@@ -234,8 +237,10 @@ function NavTrigger({
   onNavigate: () => void;
   onEnterPanel: () => void;
 }) {
+  const hasMenu = item.items.length > 0;
+
   function onLinkKey(event: ReactKeyboardEvent<HTMLAnchorElement>) {
-    if (event.key === "ArrowDown") {
+    if (hasMenu && event.key === "ArrowDown") {
       event.preventDefault();
       onOpen();
       window.requestAnimationFrame(onEnterPanel);
@@ -251,11 +256,11 @@ function NavTrigger({
       href={item.href}
       className={`flex items-center gap-1.5 px-3 py-2 ${open || current ? "text-clay" : "hover:text-clay"}`}
       onClick={onNavigate}
-      onMouseEnter={onOpen}
+      onMouseEnter={hasMenu ? onOpen : onClose}
       onKeyDown={onLinkKey}
     >
       {item.label}
-      <Chevron open={open} />
+      {hasMenu ? <Chevron open={open} /> : null}
     </AppLink>
   );
 }
