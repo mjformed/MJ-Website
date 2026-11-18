@@ -19,7 +19,7 @@ export function PhotoLayer({
       <img
         src={asset(src)}
         alt=""
-        className={`absolute inset-0 h-full w-full scale-105 object-cover ${position}`}
+        className={`absolute inset-0 h-full w-full object-cover ${position}`}
       />
       <div className={`absolute inset-0 ${overlay}`} />
       <div className="relative">{children}</div>

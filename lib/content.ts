@@ -1,118 +1,17 @@
 export const contactEmail = "mjformed@gmail.com";
 export const web3formsKey = "462875e8-5704-4ec1-8497-963412165648";
 
-export type NavLink = {
-  href: string;
-  label: string;
-  detail: string;
-};
-
 export type NavItem = {
   href: string;
   label: string;
-  items: NavLink[];
 };
 
 export const nav: NavItem[] = [
-  {
-    href: "/",
-    label: "Home",
-    items: [],
-  },
-  {
-    href: "/work",
-    label: "Work",
-    items: [
-      {
-        href: "/work#work-website",
-        label: "Website",
-        detail: "A homepage that leads with the offer.",
-      },
-      {
-        href: "/work#work-brand",
-        label: "Brand",
-        detail: "Type, color, and a small system.",
-      },
-    ],
-  },
-  {
-    href: "/services",
-    label: "Services",
-    items: [
-      {
-        href: "/services#service-websites",
-        label: "Websites",
-        detail: "Custom sites for new and existing brands.",
-      },
-      {
-        href: "/services#service-logos",
-        label: "Logos",
-        detail: "A mark that holds up small and large.",
-      },
-      {
-        href: "/services#service-branding",
-        label: "Branding",
-        detail: "Identity from scratch, or a refresh.",
-      },
-      {
-        href: "/services#service-digital",
-        label: "Digital design",
-        detail: "The work around the website and logo.",
-      },
-    ],
-  },
-  {
-    href: "/approach",
-    label: "Approach",
-    items: [
-      {
-        href: "/approach#principle-look-good",
-        label: "Look good",
-        detail: "Type, color, and composition with care.",
-      },
-      {
-        href: "/approach#principle-work-well",
-        label: "Work well",
-        detail: "Clear structure on a phone or a laptop.",
-      },
-      {
-        href: "/approach#principle-last",
-        label: "Last",
-        detail: "A point of view people remember.",
-      },
-      {
-        href: "/approach#approach-process",
-        label: "How we work",
-        detail: "Listen, shape, refine, hand off.",
-      },
-    ],
-  },
-  {
-    href: "/contact",
-    label: "Contact",
-    items: [
-      {
-        href: "/contact#contact-form",
-        label: "Start a project",
-        detail: "Tell us what you are making.",
-      },
-      {
-        href: `mailto:${contactEmail}`,
-        label: "Email the studio",
-        detail: contactEmail,
-      },
-      {
-        href: "/approach#approach-new",
-        label: "New businesses",
-        detail: "A first website, logo, and brand.",
-      },
-      {
-        href: "/approach#approach-existing",
-        label: "Existing brands",
-        detail: "A refresh when the look no longer fits.",
-      },
-    ],
-  },
+  { href: "/", label: "Home" },
+  { href: "/work", label: "Work" },
+  { href: "/services", label: "Services" },
+  { href: "/approach", label: "Approach" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export const services = [

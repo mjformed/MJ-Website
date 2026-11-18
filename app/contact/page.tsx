@@ -27,7 +27,7 @@ export default function ContactPage() {
         </div>
         <div
           id="contact-form"
-          className="scroll-mt-[4.5rem] bg-paper/90 p-6 shadow-[0_24px_60px_-32px_rgba(26,23,20,0.5)] ring-1 ring-ink/10 lg:col-span-7 lg:p-8"
+          className="scroll-mt-[4.5rem] bg-paper/92 p-6 ring-1 ring-line lg:col-span-7 lg:p-8"
         >
           <ContactForm />
         </div>
