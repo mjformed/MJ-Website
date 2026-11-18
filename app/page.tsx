@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { services } from "@/lib/content";
 
@@ -31,46 +32,65 @@ const pages = [
 export default function HomePage() {
   return (
     <>
-      <section className="mx-auto grid max-w-6xl gap-14 px-5 py-16 md:px-8 lg:grid-cols-12 lg:py-24">
-        <div className="lg:col-span-8">
-          <p className="text-sm tracking-[0.2em] uppercase text-muted">Design studio</p>
-          <h1 className="mt-5 font-serif text-[clamp(3.2rem,7.4vw,6.6rem)] leading-[0.9] tracking-[-0.035em]">
-            Design that looks good, works well, and <em className="text-clay">lasts</em>.
-          </h1>
-          <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
-            Forma helps businesses and individuals build a strong online presence through
-            creative, thoughtfully designed digital solutions. We make custom websites, logos,
-            branding, and other digital design, shaped around each client.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <Link href="/contact" className="bg-ink px-5 py-3 text-paper hover:bg-clay">
-              Start a project
-            </Link>
-            <Link href="/services" className="border border-ink px-5 py-3 hover:bg-sand">
-              See the services
-            </Link>
-          </div>
-        </div>
-        <ol className="flex flex-col justify-end gap-4 border-t border-line pt-8 lg:col-span-4 lg:border-t-0 lg:border-l lg:pl-8 lg:pt-0">
-          {services.map((service) => (
-            <li key={service.number}>
-              <Link
-                href={`/services#service-${service.id}`}
-                className="grid grid-cols-[auto_1fr] gap-4 hover:text-clay"
-              >
-                <span className="font-serif text-clay">{service.number}</span>
-                <span>
-                  <span className="block text-lg">{service.title}</span>
-                  <span className="text-sm text-muted">{service.kicker}</span>
-                </span>
+      <section className="relative overflow-hidden">
+        <Image
+          src="/backgrounds/hero.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-[center_35%]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-paper via-paper/90 to-paper/50" />
+        <div className="relative mx-auto grid max-w-6xl gap-14 px-5 py-16 md:px-8 lg:grid-cols-12 lg:py-24">
+          <div className="lg:col-span-8">
+            <p className="text-sm tracking-[0.2em] uppercase text-muted">Design studio</p>
+            <h1 className="mt-5 font-serif text-[clamp(3.2rem,7.4vw,6.6rem)] leading-[0.9] tracking-[-0.035em]">
+              Design that looks good, works well, and <em className="text-clay">lasts</em>.
+            </h1>
+            <p className="mt-8 max-w-xl text-lg leading-relaxed text-muted">
+              Forma helps businesses and individuals build a strong online presence through
+              creative, thoughtfully designed digital solutions. We make custom websites, logos,
+              branding, and other digital design, shaped around each client.
+            </p>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link href="/contact" className="bg-ink px-5 py-3 text-paper hover:bg-clay">
+                Start a project
               </Link>
-            </li>
-          ))}
-        </ol>
+              <Link href="/services" className="border border-ink bg-paper/70 px-5 py-3 hover:bg-sand">
+                See the services
+              </Link>
+            </div>
+          </div>
+          <ol className="flex flex-col justify-end gap-4 border-t border-line pt-8 lg:col-span-4 lg:border-t-0 lg:border-l lg:border-ink/15 lg:pl-8 lg:pt-0">
+            {services.map((service) => (
+              <li key={service.number}>
+                <Link
+                  href={`/services#service-${service.id}`}
+                  className="grid grid-cols-[auto_1fr] gap-4 hover:text-clay"
+                >
+                  <span className="font-serif text-clay">{service.number}</span>
+                  <span>
+                    <span className="block text-lg">{service.title}</span>
+                    <span className="text-sm text-muted">{service.kicker}</span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ol>
+        </div>
       </section>
 
-      <section className="bg-moss text-paper">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
+      <section className="relative overflow-hidden text-paper">
+        <Image
+          src="/backgrounds/quote.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-moss/75" />
+        <div className="relative mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-24">
           <p className="max-w-4xl font-serif text-[clamp(1.8rem,4vw,3.4rem)] leading-[1.15]">
             We believe great design should look good, work well, and make a lasting impression.
           </p>
