@@ -1,5 +1,5 @@
 export const brandName = "MJ Forms";
-export const contactEmail = "joeym@mjforms.com";
+export const contactEmail = "mjformed@gmail.com";
 export const web3formsKey = "462875e8-5704-4ec1-8497-963412165648";
 
 export type NavItem = {
